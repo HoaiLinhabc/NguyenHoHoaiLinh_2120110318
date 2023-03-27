@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebsiteBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Slug" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="UpdateOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Slug" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="UpdateOnUtc" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WebsiteBanHang.dbo.DatHang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DatHang">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Productld" />
+      <PropertyRef Name="Price" />
+      <PropertyRef Name="Statuss" />
+      <PropertyRef Name="CeatedOnUtc" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Productld" Type="int" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Statuss" Type="int" Nullable="false" />
+    <Property Name="CeatedOnUtc" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Avatar" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Categoryid" Type="int" Nullable="false" />
+    <Property Name="ShortDes" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FullDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="PriceDiscount" Type="float" Nullable="false" />
+    <Property Name="Typeld" Type="int" Nullable="false" />
+    <Property Name="Slug" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Brandld" Type="int" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="ShowOnHomePage" Type="bit" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOnUtc" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="FistName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="WebsiteBanHangModelStoreContainer">
+    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DatHang" EntityType="Self.DatHang" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DatHang].[id] AS [id], 
+    [DatHang].[Name] AS [Name], 
+    [DatHang].[Productld] AS [Productld], 
+    [DatHang].[Price] AS [Price], 
+    [DatHang].[Statuss] AS [Statuss], 
+    [DatHang].[CeatedOnUtc] AS [CeatedOnUtc]
+    FROM [dbo].[DatHang] AS [DatHang]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
